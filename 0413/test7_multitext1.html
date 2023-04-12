@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test7.html</title>
+    <script>
+        function clac() {
+            // let su = myform.su.value;
+            // let su = document.getElementsByName("su")[0].value;
+            // alert("su의 길이 : " + document.getElementsByName("su").length);
+            let su;
+            for(let i=0; i<document.getElementsByName("su").length; i++) {
+                su+= document.getElementsByName("su")[i].value+ "/";
+            }
+            demo.innerHTML = su;
+        }
+    </script>
+</head>
+<body>
+    <h2>멀티텍스트 입력처리 연습</h2>
+    <form name="myform">
+        수 <input type="number" name="su" /><br />
+        수 <input type="number" name="su" /><br />
+        수 <input type="number" name="su" /><br />
+        수 <input type="number" name="su" /><br />
+        수 <input type="number" name="su" /><br />
+
+        <!-- <input type="button" value="계산" onclick="clac()" /> -->
+        <button type="button" value="계산" onclick="clac()">계산</button>
+    </form>
+    <hr />
+    <div id="demo"></div>
+</body>
+</html>

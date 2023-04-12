@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test7_2_multitext.html</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="test7_2_multitext.css">
+    <script>
+        function clac() {
+            // let su = myform.su.value;
+            // let su = document.getElementsByName("su")[0].value;
+            // alert("su의 길이 : " + document.getElementsByName("su").length);
+            let su;
+            for(let i=0; i<document.getElementsByName("su").length; i++) {
+                su+= document.getElementsByName("su")[i].value+ "/";
+            }
+            demo.innerHTML = su;
+        }
+    </script>
+</head>
+<body>
+    <main class="page payment-page">
+        <section class="payment-form dark">
+            <div class="container">
+                <div class="block-heading">
+                    <form name="myform">
+                    <div class="products">
+                        <h2>멀티텍스트 입력처리 연습</h2>
+                    <!-- <div class="item">
+                        <p class="item-name"><input type="text" class="form-control item" name="product" value="냉장고"></p>
+                        <span class="price"><input type="number" name="price" value="1"></span>
+                        <br />
+                    </div> -->
+                        <div class="item">
+                            <span class="price"><input type="number" name="price" value="10000"></span>
+                            <p class="item-name"><input type="text" name="product" value="냉장고"></p>
+                        </div>
+                        <div class="item">
+                            <span class="price"><input type="number" name="price" value="20000"></span>
+                            <p class="item-name"><input type="text" name="product" value="건조기"></p>
+                        </div>
+                        <div class="item">
+                            <span class="price"><input type="number" name="price" value="30000"></span>
+                            <p class="item-name"><input type="text" name="product" value="TV"></p>
+                        </div>
+                        <div class="item">
+                            <span class="price"><input type="number" name="price" value="40000"></span>
+                            <p class="item-name"><input type="text" name="product" value="안마의자"></p>
+                        </div>
+                        <div class="item">
+                            <span class="price"><input type="number" name="price" value="50000"></span>
+                            <p class="item-name"><input type="text" name="product" value="스타일러"></p>
+                        </div>
+                <!-- <button type="button" value="계산" onclick="clac()">계산</button> -->
+                        <button type="button" class="btn btn-primary btn-block" value="계산" onclick="clac()">계산</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+        <hr />
+        <div id="demo"></div>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
