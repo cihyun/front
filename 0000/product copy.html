@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+    <link rel="stylesheet" href="product.css">
+    
+    <script>
+        function calc() {
+            let product = '', price = 0, hap = 0;
+            
+            let str = '<div class="products"><h3 class="title">제품 목록</h3><div class="item">';
+            for(let i=0; i<document.getElementsByName("product").length; i++) {
+            if(document.getElementsByName("product")[i].value.trim() == '' ||
+                document.getElementsByName("price")[i].value.trim() == '') {
+                alert("상품명과 가격을 입력하세요.");
+                return false;
+            }
+            hap += eval(document.getElementsByName("price")[i].value);
+            str += '<span class="price">' + document.getElementsByName("price")[i].value + '</span>';
+            str += '<p class="item-name">' + document.getElementsByName("product")[i].value + '</p>';
+            }
+
+            str += "</div>";
+            str += '<div class="total"> 합계 <span class="price">'+hap+'</span></div>';
+            str += "</div>";
+    
+            demo.innerHTML = str;
+        }
+    </script>
+</head>
+<body>
+    <main class="page payment-page">
+    <section class="payment-form dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2>Bootstrap</h2>
+                <p>Bootstrap을 활용한 멀티텍스트 입력 처리 연습</p>
+            </div>
+            <form>
+                <div class="card-details">
+                <h3 class="title">GREEN HOME ELECTRINICS</h3>
+                    <div class="row">
+                        <div class="form-group col-sm-8">
+                            <label for="card-number">Product</label>
+                            <input type="text" name="product" class="form-control" value="냉장고">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="cvc">Price</label>
+                            <input type="number" class="form-control" name="price" value="10000">
+                        </div>
+                        <div class="form-group col-sm-8">
+                            <input type="text" name="product" class="form-control" value="건조기">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <input type="number" name="price" class="form-control" value="20000">
+                        </div>
+                        <div class="form-group col-sm-8">
+                            <input type="text" name="product" class="form-control" value="TV">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <input type="number" name="price" class="form-control" value="30000">
+                        </div>
+                        <div class="form-group col-sm-8">
+                            <input type="text" name="product" class="form-control" value="안마의자">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <input type="number" name="price" class="form-control" value="40000">
+                        </div>
+                        <div class="form-group col-sm-8">
+                            <input type="text" name="product" class="form-control" value="스타일러">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <input type="number" name="price" class="form-control" value="50000">
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <button type="button" class="btn btn-primary btn-block" onclick="calc()">계산하기</button>
+                        </div>
+                    </div>
+                        <div id="demo"></div>    
+                </div>
+            </form>
+        </div>
+    </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

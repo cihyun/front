@@ -5,10 +5,140 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입 폼 만들기(정규식 활용)</title>
-    <script src="test2_user.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        td > label {
+            font-weight: bolder;
+            color: #444444;
+        }
+        .jumin {
+            display: inline-flex;
+        }
+        .btn3 {
+            float:right;
+        }
+    </style>
+    <script>
+        'use strict';
+
+        function regexCheck() {
+
+            // 아이디 체크
+            const regexId = /^[a-zA-Z0-9_]{4,20}$/;
+            let userId = document.getElementById("userId").value; // 입력받은 아이디
+            if(userId == ""){
+                alert("아이디를 입력하세요.");
+                myform.userId.focus();
+                return false;
+            }
+            if(!regexId.test(userId)) {
+                alert("ID는 영대/소문자, 숫자, '_'를 포함한 4~20자여야 합니다.");
+                myform.userId.focus();
+                return false;
+            }
+            // 비밀번호 체크
+            const regexPwd = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=])[A-Za-z\d!@#$%^&*()_+\-=]{4,20}$/;
+            let userPwd = document.getElementById("userPwd").value.trim();
+            if(userPwd == ""){
+                alert("비밀번호를 입력하세요.");
+                myform.userPwd.focus();
+                return false;
+            }
+            if(regexPwd.test(userPwd)) {
+                alert("비밀번호는 영대/소문자, 숫자를 사용하고 특수문자 1개 이상을 포함한 4~20자여야 합니다.\n (특수문자 : !@#$%^&*()_+\-=)");
+                myform.userPwd.focus();
+                return false;
+            }
+            // 주민번호 뒷자리 체크
+            const regexRrn = /^[1-4][0-9]{7}$/;
+            let userRrn2 = document.getElementById("userRrn2").value.trim();
+            if(userRrn2 == ""){
+                alert("주민등록번호 뒷자리를 입력하세요.");
+                myform.userRrn2.focus();
+                return false;
+            }
+            if(regexRrn.test(userRrn2)) {
+                alert("주민등록번호 뒷자리 형식에 맞지 않습니다.");
+                myform.userRrn2.focus();
+                return false;
+            }
+            // 성명 체크
+            const regexName = /^[가-힣a-zA-Z]{2,20}$/;
+            let userName = document.getElementById("userName").value.trim();
+            if(userName == ""){
+                alert("성명을 입력하세요.");
+                myform.userName.focus();
+                return false;
+            }
+            if(!regexName.test(userName)) {
+                alert("성명은 한글, 영문만 허용됩니다.");
+                myform.userName.focus();
+                return false;
+            }
+            // 닉네임 체크
+            const regexNic = /^[가-힣]{2,20}$/;
+            let userNic = document.getElementById("userNic").value.trim();
+            if(userNic == ""){
+                alert("닉네임을 입력하세요.");
+                myform.userNic.focus();
+                return false;
+            }
+            if(!regexNic.test(userNic)) {
+                alert("닉네임은 한글만 허용됩니다.");
+                myform.userNic.focus();
+                return false;
+            }
+            // 이메일 체크
+            const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            let userEmail = document.getElementById("userEmail").value.trim();
+            if(userEmail == ""){
+                alert("이메일 주소를 입력하세요.");
+                myform.userEmail.focus();
+                return false;
+            }
+            if(!regexEmail.test(userEmail)) {
+                alert("이메일 주소 형식에 맞지 않습니다.");
+                myform.userEmail.focus();
+                return false;
+            }
+            // 홈페이지 주소 체크
+            const regexUrl = /^(http(s)?:\/\/)?[\w.-]+(\.[\w.-]+)+([^\s()<>]+(?:[\s()<>]+|$))+$/;
+            let userUrl = document.getElementById("userUrl").value.trim();
+            if(userUrl == ""){
+                alert("홈페이지 url 주소를 입력하세요.");
+                myform.userUrl.focus();
+                return false;
+            }
+            if(!regexUrl.test(userUrl)) {
+                alert("url 형식에 맞지 않습니다.");
+                myform.userUrl.focus();
+                return false;
+            }
+            // 연락처 체크
+            const regexPhone = /^(\d{2,3})(\d{3,4})(\d{4})$/;
+            regexPhone.replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+            let userPhone = document.getElementById("userPhone").value.trim();
+            if(userPhone == ""){
+                alert("연락처를 입력해 주세요.");
+                myform.userPhone.focus();
+                return false;
+            }
+            if(!regexPhone.test(userPhone).value) {
+                alert("연락처 형식에 맞게 입력해 주세요.\n 지역번호를 포함한 일반전화, 휴대전화번호 입력이 가능합니다.");
+                myform.userPhone.focus();
+                return false;
+            }
+        }
+        
+        //아이디 중복 체크(window.open()활용해보기 )
+        // function idCheck() {
+        // }
+    </script>
 </head>
 <body>
-
     <!-- 
     아이디 : 영문자, 숫자, _ 포함으로 4~20까지 예제) /a-z0-9_/{4,20}$ 숫자나 영문자, _을 사용하여 4~20까지
     비밀번호 : 영문자, 숫자, _, 특수문자(~!@#$%^&*()_+,.?><][]{}) 1자 이상 포함으로 4~20자까지
@@ -19,6 +149,80 @@
     전화번호 : 전화번호형식 (지역번호(2~3) - 국번호(3~4)-전화번호(4))
     주민번호 : 숫자와 구분자(-)만 오되, 앞쪽 6자리 - 뒤쪽 1자리(1~4)까지의 숫자만
     -->
-
+    <div class="container">
+        <!-- 1. 정보입력 테이블 생성 -->
+        <h2 class="mt-5 font-weight-bolder">회원가입</h2>
+        <p class="small font-weight-bold text-danger text-right mb-1">* 모든 항목은 필수입력입니다.</p>
+        <form name="myform">
+            <table class="table mt-2">
+                <caption></caption>
+                <colgroup>
+                    <col width="25%">
+                    <col width="75%">
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td><label for="userId">아이디</label></td>
+                        <td class="input-group">
+                            <input name="userId" type="text" id="userId" class="form-control" value="" placeholder="아이디 입력" />
+                            <button class="btn btn-secondary" onclick="idCheck()">중복확인</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="userPwd">비밀번호</label></td>
+                        <td>
+                            <input name="userPwd" type="password" id="userPwd" class="form-control" placeholder="비밀번호 입력" />
+                            <span class="mt-2 small" style="display:block;">* 영문, 숫자, 특수문자 1개 이상 포함, 4~20자 까지</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="userRrn">주민등록번호</label></td>
+                        <td>
+                            <div class="jumin">
+                                <input name="userRrn" type="text" id="userRrn1" class="form-control" placeholder="주민번호 앞6자리" />
+                                <input name="userRrn" type="password" id="userRrn2" class="form-control ml-2" placeholder="주민번호 뒷자리" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="userName">성명</label></td>
+                        <td><input name="userName" type="text" maxlength="20" id="userName" class="form-control" placeholder="성명 입력" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="">성별</label></td>
+                        <td>
+                            <input type="radio" name="gender" id="genderM" value="남" checked />
+                            <label for="genderM">남자</label>
+                            <input type="radio" name="gender" id="genderW" class="ml-4" value="여" />
+                            <label for="genderW">여자</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="userNic">닉네임</label></td>
+                        <td><input name="userNic" type="text" id="userNic" value="" class="form-control" placeholder="닉네임 입력" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="userEmail">이메일</label></td>
+                        <td><input name="userEmail" type="text" id="userEmail" value="" class="form-control" placeholder="이메일 입력" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="userUrl">홈페이지 주소</label></td>
+                        <td><input name="userUrl" type="text" id="userUrl" value="" class="form-control" placeholder="홈페이지 url 입력" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="userPhone">연락처</label></td>
+                        <td><input name="userPhone" type="text" id="userPhone" value="" class="form-control" placeholder="연락처 입력" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="button" class="btn btn-dark" onclick="winClose()" value="창닫기" />
+                            <input type="button" class="btn btn-outline-danger" onclick="fClear()" value="다시작성" />
+                            <input type="button" class="btn3 btn btn-primary" onclick="regexCheck()" value="작성완료" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
 </body>
 </html>
